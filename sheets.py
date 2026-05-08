@@ -23,6 +23,12 @@ DOC_ID   = os.getenv("GOOGLE_DOC_ID", "1QgH5TUDAyUPb1yyRv7MJMYDkSchXX0OR3Z4Gc7iF
 
 
 def _get_credentials() -> Credentials:
+    try:
+        import streamlit as st
+        sa_info = dict(st.secrets["gcp_service_account"])
+        return Credentials.from_service_account_info(sa_info, scopes=SCOPES)
+    except Exception:
+        pass
     creds_file = os.getenv("GOOGLE_CREDENTIALS", "multi-agent-fpa-58c3308e1e62.json")
     return Credentials.from_service_account_file(creds_file, scopes=SCOPES)
 
