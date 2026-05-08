@@ -1,0 +1,24 @@
+# Secrets — never commit these
+.streamlit/secrets.toml
+.env
+*.json
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Local reports (generated run outputs)
+*.txt
+!requirements.txt
+
+# OS
+.DS_Store
+Thumbs.db
