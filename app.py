@@ -45,6 +45,21 @@ st.session_state.setdefault("running", False)
 st.session_state.setdefault("delete_confirm_id", None)
 st.session_state.setdefault("last_result", None)
 
+# ── Password gate ──────────────────────────────────────────────────────────────
+if "authenticated" not in st.session_state:
+    st.session_state["authenticated"] = False
+
+if not st.session_state["authenticated"]:
+    st.title("🔒 FP&A Research System")
+    password = st.text_input("Enter password", type="password")
+    if st.button("Login"):
+        if password == st.secrets.get("APP_PASSWORD", ""):
+            st.session_state["authenticated"] = True
+            st.rerun()
+        else:
+            st.error("Incorrect password")
+    st.stop()
+
 # ── Header ─────────────────────────────────────────────────────────────────────
 st.title("📊 FP&A Multi-Agent Research System")
 st.caption("Orchestrator → Scout → Architect → Analyst → Visual → Google Workspace")
