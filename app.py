@@ -53,7 +53,6 @@ if not st.session_state["authenticated"]:
     st.title("🔒 FP&A Research System")
     password = st.text_input("Enter password", type="password")
     if st.button("Login"):
-        st.write(f"Secret value: '{st.secrets.get('APP_PASSWORD', 'NOT FOUND')}'")
         correct = st.secrets.get("APP_PASSWORD", "")
         if password == correct:
             st.session_state["authenticated"] = True
